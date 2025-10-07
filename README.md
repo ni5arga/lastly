@@ -26,7 +26,7 @@ To embed these images in your GitHub README (or other markdown content):
 1. Use the following markdown syntax to display the overall statistics for a user.
 
 ```md
-![Overall Statistics](https://lastly.vercel.com/api/overall?username=USERNAME&period=PERIOD)
+![Overall Statistics](https://lastly.nisarga.me/api/overall?username=USERNAME&period=PERIOD)
 ```
 
 Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired period (see options below).
@@ -34,7 +34,7 @@ Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired peri
 2. Alternatively, you can use HTML for more control over formatting (e.g., centering the image):
 
 ```html
-<img src="https://lastly.vercel.com/api/overall?username=USERNAME&period=PERIOD" alt="Overall Statistics" align="center">
+<img src="https://lastly.nisarga.me/api/overall?username=USERNAME&period=PERIOD" alt="Overall Statistics" align="center">
 ```
 
 ---
