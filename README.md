@@ -17,76 +17,6 @@ The project provides the following API endpoints:
 | `/api/top-albums`     | Fetches and visualizes top albums          |
 | `/api/recent`         | Fetches and visualizes recent tracks       |
 
-### Example Usage
-
-#### 1. Overall Statistics
-
-**Endpoint:**
-
-```bash
-/api/overall?username=ni5arga&period=overall
-```
-
-**Preview:**
-
-![Overall Statistics](https://lastly.nisarga.me/api/overall?username=ni5arga&period=6months)
-
----
-
-#### 2. Top Artists
-
-**Endpoint:**
-
-```bash
-/api/top-artists?username=ni5arga
-```
-
-**Preview:**
-
-![Top Artists](https://lastly.nisarga.me/api/top-artists?username=ni5arga)
-
----
-
-#### 3. Top Tracks
-
-**Endpoint:**
-
-```bash
-/api/top-tracks?username=ni5arga
-```
-
-**Preview:**
-
-![Top Tracks](https://lastly.nisarga.me/api/top-tracks?username=ni5arga)
-
----
-
-#### 4. Top Albums
-
-**Endpoint:**
-
-```bash
-/api/top-albums?username=ni5arga
-```
-
-**Preview:**
-
-![Top Albums](https://lastly.nisarga.me/api/top-albums?username=ni5arga)
-
----
-
-#### 5. Recent Tracks
-
-**Endpoint:**
-
-```bash
-/api/recent?username=ni5arga
-```
-
-**Preview:**
-
-![Recent Tracks](https://lastly.nisarga.me/api/recent?username=ni5arga)
-
 ---
 
 ## 🚀 Embedding in README
@@ -96,7 +26,7 @@ To embed these images in your GitHub README (or other markdown content):
 1. Use the following markdown syntax to display the overall statistics for a user.
 
 ```md
-![Overall Statistics](https://lastly.nisarga.me/api/overall?username=USERNAME&period=PERIOD)
+![Overall Statistics](https://lastly.vercel.com/api/overall?username=USERNAME&period=PERIOD)
 ```
 
 Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired period (see options below).
@@ -104,7 +34,7 @@ Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired peri
 2. Alternatively, you can use HTML for more control over formatting (e.g., centering the image):
 
 ```html
-<img src="https://lastly.nisarga.me/api/overall?username=USERNAME&period=PERIOD" alt="Overall Statistics" align="center">
+<img src="https://lastly.vercel.com/api/overall?username=USERNAME&period=PERIOD" alt="Overall Statistics" align="center">
 ```
 
 ---
