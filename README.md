@@ -1,11 +1,13 @@
 
-# 🎵 Lastly
+# Lastly
 
-Lastly is a **Next.js** project that generates **SVG images** displaying music statistics from [Last.fm](https://www.last.fm). The project offers several API endpoints to fetch and visualize data like top artists, tracks, albums, and recent listening history for any given user.
+Lastly is a Next.js project that generates dynamic SVG images showcasing your Last.fm listening statistics. These SVGs are designed to be embedded directly into GitHub READMEs, profiles, or any markdown-supported platform.
+
+It supports multiple endpoints to visualize artists, tracks, albums, and recent activity for any Last.fm user - all rendered server-side as SVGs.
 
 ---
 
-## 🎯 API Endpoints
+## API Endpoints
 
 The project provides the following API endpoints:
 
@@ -19,7 +21,7 @@ The project provides the following API endpoints:
 
 ---
 
-## 🚀 Embedding in README
+## Embedding in README
 
 To embed these images in your GitHub README (or other markdown content):
 
@@ -39,7 +41,7 @@ Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired peri
 
 ---
 
-### 🛠️ Options
+### Options
 
 - **`username`**: Your [Last.fm](https://www.last.fm) username.
 - **`period`**: Can be set to:
@@ -93,7 +95,7 @@ Follow the steps below to set up and run the project on your local machine:
 
 ---
 
-## 🌍 Deploy with Vercel
+## Deploy with Vercel
 
 Deploy the project to Vercel using the button below. Make sure to set up your environment variable (`LASTFM_API_KEY`) during the process.
 
@@ -102,7 +104,7 @@ Deploy the project to Vercel using the button below. Make sure to set up your en
 ---
 
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
