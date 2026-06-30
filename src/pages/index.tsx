@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("https://github.com/ni5arga/lastly");
+    router.push('https://github.com/arshnah/lastly');
   }, [router]);
 
-  return null; 
+  return null;
 }

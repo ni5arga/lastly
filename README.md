@@ -1,103 +1,113 @@
-
 # Lastly
 
 Lastly is a Next.js project that generates dynamic SVG images showcasing your Last.fm listening statistics. These SVGs are designed to be embedded directly into GitHub READMEs, profiles, or any markdown-supported platform.
 
-It supports multiple endpoints to visualize artists, tracks, albums, and recent activity for any Last.fm user - all rendered server-side as SVGs.
-
+It supports multiple endpoints to visualize artists, tracks, albums, and recent activity for any Last.fm user — all rendered server-side as SVGs, with CDN caching and multiple color themes.
 
 ## API Endpoints
 
-The project provides the following API endpoints:
-
-| Endpoint              | Description                                |
-| --------------------- | ------------------------------------------ |
-| `/api/overall`        | Fetches and visualizes overall statistics  |
-| `/api/top-artists`    | Fetches and visualizes top artists         |
-| `/api/top-tracks`     | Fetches and visualizes top tracks          |
-| `/api/top-albums`     | Fetches and visualizes top albums          |
-| `/api/recent`         | Fetches and visualizes recent tracks       |
-
+| Endpoint           | Description                               |
+| ------------------ | ----------------------------------------- |
+| `/api/overall`     | Fetches and visualizes overall statistics |
+| `/api/top-artists` | Fetches and visualizes top artists        |
+| `/api/top-tracks`  | Fetches and visualizes top tracks         |
+| `/api/top-albums`  | Fetches and visualizes top albums         |
+| `/api/recent`      | Fetches and visualizes recent tracks      |
 
 ## Embedding in README
 
-To embed these images in your GitHub README (or other markdown content):
+Use markdown:
 
-1. Use the following markdown syntax to display the overall statistics for a user.
-
-```md
-![Overall Statistics](https://lastly.nisarga.me/api/overall?username=USERNAME&period=overall)
+```
+![Overall Statistics](https://lastly.nisarga.me/api/overall?username=USERNAME&period=overall&theme=default)
 ```
 
-Replace `USERNAME` with your Last.fm username and `PERIOD` with the desired period (see options below).
+Or HTML for more control (e.g. centering):
 
-2. Alternatively, you can use HTML for more control over formatting (e.g., centering the image):
-
-```html
-<img src="https://lastly.nisarga.me/api/overall?username=USERNAME&period=overall" alt="Overall Statistics" align="center">
+```
+<img src="https://lastly.nisarga.me/api/overall?username=USERNAME&theme=dracula" alt="Overall Statistics" align="center">
 ```
 
+Replace `USERNAME` with your Last.fm username.
 
-### Options
+### Query Options
 
-- **`username`**: Your [Last.fm](https://www.last.fm) username.
-- **`period`**: Can be set to:
-  - `overall`: All-time statistics (default)
-  - `7day`: Last 7 days
-  - `1month`: Last month
-  - `3month`: Last 3 months
-  - `6month`: Last 6 months
-  - `12month`: Last year
+- **`username`** *(required)*: Your [Last.fm](https://www.last.fm) username.
+- **`period`**: Time range for stats. Applies to `overall`, `top-artists`, `top-tracks`, `top-albums`.
+  - `overall` (default), `7day`, `1month`, `3month`, `6month`, `12month`
+- **`theme`**: Color theme. Defaults to `default`.
+  - `default`, `dark`, `light`, `dracula`, `gruvbox`, `tokyonight`, `radical`, `nord`, `catppuccin`
 
-If `period` is not specified, the default is `overall`.
+If `period` or `theme` is omitted, sensible defaults are used. Invalid values fall back to defaults.
 
+### Examples
+
+```
+![Top Artists](https://lastly.nisarga.me/api/top-artists?username=USERNAME&period=7day&theme=tokyonight)
+![Recent](https://lastly.nisarga.me/api/recent?username=USERNAME&theme=nord)
+```
+
+## Caching
+
+Responses are served with `Cache-Control` headers so the CDN can serve cards without re-hitting Last.fm on every render:
+
+- `overall`, `top-*` → cached ~6 hours
+- `recent` → cached ~5 minutes (activity changes often)
+
+Errors (e.g. unknown user) return a readable SVG error card with a short cache, so your README never shows a broken image.
 
 ## Self-Hosting Guide
 
-Follow the steps below to set up and run the project on your local machine:
-
 1. **Clone the repository**:
 
-   ```bash
-   git clone https://github.com/ni5arga/lastly.git
-   cd lastly
-   ```
+```
+git clone https://github.com/ni5arga/lastly.git
+cd lastly
+```
 
 2. **Install dependencies**:
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```
+npm install
+```
 
-3. **Configure environment**:
+3. **Configure environment**: Create a `.env.local` in the root and add your Last.fm API key:
 
-   Create a `.env.local` file in the root directory and add your Last.fm API key.
-
-   ```env
-   LASTFM_API_KEY=your_lastfm_api_key
-   ```
+```
+LASTFM_API_KEY=your_lastfm_api_key
+```
 
 4. **Run the development server**:
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```
+npm run dev
+```
 
-   Open [http://localhost:3000](http://localhost:3000) with your browser to view the project.
-
+Open <http://localhost:3000> with your browser to view the project.
 
 ## Deploy with Vercel
 
-Deploy the project to Vercel using the button below. Make sure to set up your environment variable (`LASTFM_API_KEY`) during the process.
+Deploy to Vercel and set the `LASTFM_API_KEY` environment variable during setup.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fni5arga%2FLastly&env=LASTFM_API_KEY)
 
+## Project Structure
+
+```
+src/
+├── lib/
+│   ├── lastfm.ts   # Last.fm API client: typed fetchers, validation, timeouts, avatar handling
+│   └── svg.ts      # Themes, SVG building blocks, error cards, cached response senders
+└── pages/
+    ├── index.tsx   # Redirects to the GitHub repo
+    └── api/
+        ├── overall.ts
+        ├── recent.ts
+        ├── top-albums.ts
+        ├── top-artists.ts
+        └── top-tracks.ts
+```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
